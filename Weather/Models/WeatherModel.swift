@@ -8,5 +8,17 @@
 import Foundation
 
 struct WeatherModel {
-    
+    let cityName: String
+    let weatherType: String?
+    let date: Date
+    let temperature: Double
+    let highTemperature: Double?
+    let lowTemperature: Double?
+    let description: String?
+    let feelsLikeTemperature: Double?
+    let pressure: Int?
+    let humidity: Int?
+    let cloudiness: Double?
+    let sunrise: Date?
+    let sunset: Date?
 }

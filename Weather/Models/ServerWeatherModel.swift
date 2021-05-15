@@ -50,7 +50,7 @@ struct ServerWeatherModel: Codable {
     
     // MARK: - Clouds
     struct Clouds: Codable {
-        let all: Int
+        let all: Double
     }
     
     // MARK: - Weather
