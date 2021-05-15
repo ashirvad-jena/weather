@@ -121,18 +121,9 @@
 			children = (
 				C41ED62A264F7D5800182D5D /* AppDelegate.swift */,
 				C41ED62C264F7D5800182D5D /* SceneDelegate.swift */,
-				C41ED65A264F7DFC00182D5D /* WeatherDetailViewController.swift */,
-				C41ED65B264F7DFC00182D5D /* WeatherDetailViewController.xib */,
-				C41ED65E264F7E1800182D5D /* SearchCityViewController.swift */,
-				C41ED65F264F7E1800182D5D /* SearchCityViewController.xib */,
-				C41ED662264F7E4D00182D5D /* WeatherCell.swift */,
-				C41ED663264F7E4D00182D5D /* WeatherCell.xib */,
-				C41ED66A264F8B4100182D5D /* WeatherDetailHeaderCell.swift */,
-				C41ED66B264F8B4100182D5D /* WeatherDetailHeaderCell.xib */,
-				C41ED66E264F8B5400182D5D /* WeatherDetailInfoCell.swift */,
-				C41ED66F264F8B5400182D5D /* WeatherDetailInfoCell.xib */,
-				C41ED62E264F7D5800182D5D /* ViewController.swift */,
-				C41ED630264F7D5800182D5D /* Main.storyboard */,
+				C41ED674264FBA1C00182D5D /* WeatherDetail */,
+				C41ED676264FBBA700182D5D /* SearchCity */,
+				C41ED672264FB98C00182D5D /* WeatherList */,
 				C41ED633264F7D5A00182D5D /* Assets.xcassets */,
 				C41ED635264F7D5A00182D5D /* LaunchScreen.storyboard */,
 				C41ED638264F7D5A00182D5D /* Info.plist */,
@@ -156,6 +147,63 @@
 				C41ED64E264F7D5A00182D5D /* Info.plist */,
 			);
 			path = WeatherUITests;
+			sourceTree = "<group>";
+		};
+		C41ED672264FB98C00182D5D /* WeatherList */ = {
+			isa = PBXGroup;
+			children = (
+				C41ED673264FB9FA00182D5D /* ViewController */,
+			);
+			path = WeatherList;
+			sourceTree = "<group>";
+		};
+		C41ED673264FB9FA00182D5D /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C41ED62E264F7D5800182D5D /* ViewController.swift */,
+				C41ED630264F7D5800182D5D /* Main.storyboard */,
+				C41ED662264F7E4D00182D5D /* WeatherCell.swift */,
+				C41ED663264F7E4D00182D5D /* WeatherCell.xib */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		C41ED674264FBA1C00182D5D /* WeatherDetail */ = {
+			isa = PBXGroup;
+			children = (
+				C41ED675264FBA5C00182D5D /* ViewController */,
+			);
+			path = WeatherDetail;
+			sourceTree = "<group>";
+		};
+		C41ED675264FBA5C00182D5D /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C41ED65A264F7DFC00182D5D /* WeatherDetailViewController.swift */,
+				C41ED65B264F7DFC00182D5D /* WeatherDetailViewController.xib */,
+				C41ED66A264F8B4100182D5D /* WeatherDetailHeaderCell.swift */,
+				C41ED66B264F8B4100182D5D /* WeatherDetailHeaderCell.xib */,
+				C41ED66E264F8B5400182D5D /* WeatherDetailInfoCell.swift */,
+				C41ED66F264F8B5400182D5D /* WeatherDetailInfoCell.xib */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		C41ED676264FBBA700182D5D /* SearchCity */ = {
+			isa = PBXGroup;
+			children = (
+				C41ED677264FBBB300182D5D /* ViewController */,
+			);
+			path = SearchCity;
+			sourceTree = "<group>";
+		};
+		C41ED677264FBBB300182D5D /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C41ED65E264F7E1800182D5D /* SearchCityViewController.swift */,
+				C41ED65F264F7E1800182D5D /* SearchCityViewController.xib */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
