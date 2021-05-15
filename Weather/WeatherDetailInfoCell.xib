@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="75" id="KGk-i7-Jjw" customClass="WeatherDetailInfoCell" customModule="Weather" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="55"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="55"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KJX-uM-EHJ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="55"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="87G-rk-hdL">
+                                <rect key="frame" x="20" y="15" width="97.5" height="25"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sunrise" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="6Hy-qQ-lTZ">
+                                        <rect key="frame" x="0.0" y="-1.5" width="25" height="24.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="25" id="ccz-0E-o7F"/>
+                                            <constraint firstAttribute="height" constant="25" id="kZv-tp-8mS"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sunrise" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f4s-so-f37">
+                                        <rect key="frame" x="35" y="2" width="62.5" height="21.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5:54 am" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AeF-I7-sII">
+                                <rect key="frame" x="231.5" y="17" width="68.5" height="21.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="87G-rk-hdL" firstAttribute="centerY" secondItem="KJX-uM-EHJ" secondAttribute="centerY" id="8rI-wQ-0gS"/>
+                            <constraint firstItem="87G-rk-hdL" firstAttribute="leading" secondItem="KJX-uM-EHJ" secondAttribute="leading" constant="20" id="Jk9-sT-Jzb"/>
+                            <constraint firstAttribute="trailing" secondItem="AeF-I7-sII" secondAttribute="trailing" constant="20" id="e6e-Mb-PLd"/>
+                            <constraint firstItem="AeF-I7-sII" firstAttribute="centerY" secondItem="87G-rk-hdL" secondAttribute="centerY" id="ecm-C6-Kcc"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="KJX-uM-EHJ" secondAttribute="trailing" id="0HL-8W-emV"/>
+                    <constraint firstItem="KJX-uM-EHJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="KNO-fY-OV9"/>
+                    <constraint firstItem="KJX-uM-EHJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="RIT-Ut-MEe"/>
+                    <constraint firstAttribute="bottom" secondItem="KJX-uM-EHJ" secondAttribute="bottom" id="jAk-lf-vcj"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="containerView" destination="KJX-uM-EHJ" id="h0f-Vb-tgp"/>
+                <outlet property="infoDescriptionLabel" destination="AeF-I7-sII" id="VJB-an-n0b"/>
+                <outlet property="infoIcon" destination="6Hy-qQ-lTZ" id="rZM-Sr-bsV"/>
+                <outlet property="infoTitleLabel" destination="f4s-so-f37" id="1jV-Mt-6Yr"/>
+            </connections>
+            <point key="canvasLocation" x="89.855072463768124" y="77.34375"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="sunrise" catalog="system" width="128" height="97"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
