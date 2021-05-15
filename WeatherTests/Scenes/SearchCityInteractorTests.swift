@@ -10,7 +10,7 @@ import XCTest
 
 class SearchCityInteractorTests: XCTestCase {
 
-    var sut: SearchCityInteractor!
+    var sut: SearchCityInteractor?
     
     override func setUp() {
         super.setUp()
@@ -18,15 +18,39 @@ class SearchCityInteractorTests: XCTestCase {
     }
     
     override func tearDown() {
+        sut = nil
         super.tearDown()
     }
     
     func testMapModelShouldConvertServerModelToWeatherModel() {
         let serverModel = SampleServerModel.getModel(for: "London")
-        XCTAssertNil(sut.weatherModel)
-        sut.mapServerModelToWeatherModel(serverModel)
-        XCTAssertNotNil(sut.weatherModel)
-        XCTAssertEqual(sut.weatherModel?.cityName, "London")
+        XCTAssertNil(sut?.weatherModel)
+        sut?.mapServerModelToWeatherModel(serverModel)
+        XCTAssertNotNil(sut?.weatherModel)
+        XCTAssertEqual(sut?.weatherModel?.cityName, "London")
     }
+    
+    func testInteractorShouldPassNilToPresenterIfFetchFails() {
+        sut?.presenter = SearchCityPresenterSpy()
+        let request = SearchCity.FetchWeather.Request(searchCityName: "")
+        sut?.fetchWeatherDetails(for: request)
+        let expect = expectation(description: "Wait for fetchWeather to return")
+        let waitSeconds = 2
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(waitSeconds)) {
+            XCTAssertNil((self.sut?.presenter as! SearchCityPresenterSpy).weatherModel)
+            expect.fulfill()
+        }
+        waitForExpectations(timeout: TimeInterval(waitSeconds))
+    }
+}
+
+fileprivate class SearchCityPresenterSpy: SearchCityPresentationLogic {
+    var weatherModel: WeatherModel?
+    
+    func presentResult(from response: SearchCity.FetchWeather.Response) {
+        weatherModel = response.weatherModel
+    }
+    
+    
 }
 

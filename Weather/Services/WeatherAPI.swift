@@ -13,14 +13,20 @@ struct WeatherAPI: FetchCityWeatherProtocol {
     
     func fetchWeatherFromApi(for searchName: String, completionHandler: @escaping (ServerWeatherModel?) -> Void) {
         var responseModel: ServerWeatherModel?
-        defer {
+        guard !searchName.isEmpty else {
             completionHandler(responseModel)
+            return
         }
-        guard !searchName.isEmpty else { return }
         let urlString = getUrlString(for: searchName)
-        guard let url = URL(string: urlString) else { return }
+        guard let url = URL(string: urlString) else {
+            completionHandler(responseModel)
+            return
+        }
         let urlRequest = URLRequest(url: url)
         let task = URLSession.shared.dataTask(with: urlRequest) { data, response, error in
+            defer {
+                completionHandler(responseModel)
+            }
             guard error == nil,
                   let data = data else { return }
             do {

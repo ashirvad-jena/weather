@@ -8,17 +8,21 @@
 import Foundation
 
 protocol SearchCityBusinessLogic {
-    func fetchWeatherDetails(for request: WeatherList.FetchWeather.Request)
+    func fetchWeatherDetails(for request: SearchCity.FetchWeather.Request)
     func mapServerModelToWeatherModel(_ serverModel: ServerWeatherModel)
 }
 
 class SearchCityInteractor: SearchCityBusinessLogic {
     
+    var presenter: SearchCityPresentationLogic?
     let weatherWorker = WeatherWorker(cityWeather: WeatherAPI())
     var weatherModel: WeatherModel?
     
-    func fetchWeatherDetails(for request: WeatherList.FetchWeather.Request) {
+    func fetchWeatherDetails(for request: SearchCity.FetchWeather.Request) {
         weatherWorker.cityWeather?.fetchWeatherFromApi(for: request.searchCityName, completionHandler: { serverModel in
+            defer {
+                self.presenter?.presentResult(from: SearchCity.FetchWeather.Response(weatherModel: self.weatherModel))
+            }
             guard let serverModel = serverModel else { return }
             self.mapServerModelToWeatherModel(serverModel)
         })

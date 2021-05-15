@@ -35,6 +35,8 @@
 		C41ED68B264FDDB900182D5D /* WeatherListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41ED68A264FDDB900182D5D /* WeatherListInteractor.swift */; };
 		C41ED68D264FDDDA00182D5D /* SearchCityInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41ED68C264FDDDA00182D5D /* SearchCityInteractor.swift */; };
 		C41ED692264FDE7400182D5D /* SearchCityInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41ED691264FDE7400182D5D /* SearchCityInteractorTests.swift */; };
+		C41ED694264FED6400182D5D /* SearchCityPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41ED693264FED6400182D5D /* SearchCityPresenter.swift */; };
+		C41ED696264FF0AB00182D5D /* SearchCityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41ED695264FF0AB00182D5D /* SearchCityModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +91,8 @@
 		C41ED68A264FDDB900182D5D /* WeatherListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherListInteractor.swift; sourceTree = "<group>"; };
 		C41ED68C264FDDDA00182D5D /* SearchCityInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCityInteractor.swift; sourceTree = "<group>"; };
 		C41ED691264FDE7400182D5D /* SearchCityInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCityInteractorTests.swift; sourceTree = "<group>"; };
+		C41ED693264FED6400182D5D /* SearchCityPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCityPresenter.swift; sourceTree = "<group>"; };
+		C41ED695264FF0AB00182D5D /* SearchCityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCityModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,6 +226,8 @@
 			children = (
 				C41ED677264FBBB300182D5D /* ViewController */,
 				C41ED68C264FDDDA00182D5D /* SearchCityInteractor.swift */,
+				C41ED693264FED6400182D5D /* SearchCityPresenter.swift */,
+				C41ED695264FF0AB00182D5D /* SearchCityModel.swift */,
 			);
 			path = SearchCity;
 			sourceTree = "<group>";
@@ -413,6 +419,7 @@
 			files = (
 				C41ED68D264FDDDA00182D5D /* SearchCityInteractor.swift in Sources */,
 				C41ED62F264F7D5800182D5D /* ViewController.swift in Sources */,
+				C41ED696264FF0AB00182D5D /* SearchCityModel.swift in Sources */,
 				C41ED67C264FBF1900182D5D /* WeatherWorker.swift in Sources */,
 				C41ED660264F7E1800182D5D /* SearchCityViewController.swift in Sources */,
 				C41ED664264F7E4D00182D5D /* WeatherCell.swift in Sources */,
@@ -422,6 +429,7 @@
 				C41ED68B264FDDB900182D5D /* WeatherListInteractor.swift in Sources */,
 				C41ED66C264F8B4100182D5D /* WeatherDetailHeaderCell.swift in Sources */,
 				C41ED670264F8B5400182D5D /* WeatherDetailInfoCell.swift in Sources */,
+				C41ED694264FED6400182D5D /* SearchCityPresenter.swift in Sources */,
 				C41ED65C264F7DFC00182D5D /* WeatherDetailViewController.swift in Sources */,
 				C41ED685264FCE5600182D5D /* WeatherAPI.swift in Sources */,
 				C41ED683264FCBC300182D5D /* WeatherLists.swift in Sources */,

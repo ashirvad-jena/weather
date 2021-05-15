@@ -9,13 +9,4 @@ import Foundation
 
 enum WeatherList {
     
-    enum FetchWeather {
-        struct Request {
-            let searchCityName: String
-        }
-        
-        struct Response {
-            // TODO
-        }
-    }
 }

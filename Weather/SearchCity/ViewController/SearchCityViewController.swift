@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol SearchCityDisplayLogic: AnyObject {
+    func displayResult(string: String)
+}
+
 class SearchCityViewController: UIViewController {
 
     @IBOutlet weak var searchBar: UISearchBar!
@@ -15,5 +19,11 @@ class SearchCityViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+    }
+}
+
+extension SearchCityViewController: SearchCityDisplayLogic {
+    func displayResult(string: String) {
+        resultLabel.text = string
     }
 }
