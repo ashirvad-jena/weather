@@ -8,7 +8,8 @@
 import Foundation
 
 protocol WeatherListPresentationLogic {
-    func presentFetchedWeathers(response: WeatherList.ShowWeathers.Response)
+    func presentFetchedWeathers(response: WeatherListUseCases.ShowWeathers.Response)
+    func presentDeleteWeather(response: WeatherListUseCases.DeleteWeather.Response)
 }
 
 class WeatherListPresenter: WeatherListPresentationLogic {
@@ -21,17 +22,25 @@ class WeatherListPresenter: WeatherListPresentationLogic {
         return formatter
     }()
     
-    func presentFetchedWeathers(response: WeatherList.ShowWeathers.Response) {
-        var displayWeathers: [WeatherList.ShowWeathers.ViewModel.DisplayWeather] = []
+    func presentFetchedWeathers(response: WeatherListUseCases.ShowWeathers.Response) {
+        var displayWeathers: [WeatherListUseCases.ShowWeathers.ViewModel.DisplayWeather] = []
         displayWeathers = response.weatherModels.map({ weatherModel in
-            return WeatherList.ShowWeathers.ViewModel.DisplayWeather(
+            return WeatherListUseCases.ShowWeathers.ViewModel.DisplayWeather(
                 date: timeFormatter.string(from: weatherModel.date),
                 city: weatherModel.cityName,
                 temperature: String(format: "%.1f°C", weatherModel.temperature))
         })
-        let viewModel = WeatherList.ShowWeathers.ViewModel(displayWeathers: displayWeathers)
+        let viewModel = WeatherListUseCases.ShowWeathers.ViewModel(displayWeathers: displayWeathers)
         DispatchQueue.main.async {
             self.viewObject?.displayWeathers(viewModel: viewModel)
+        }
+    }
+    
+    func presentDeleteWeather(response: WeatherListUseCases.DeleteWeather.Response) {
+        if let error = response.error {
+            viewObject?.displayDeletionStatus(status: error.localizedDescription)
+        } else {
+            viewObject?.displayDeletionStatus(status: "Deleted " + (response.weatherModel?.cityName ?? ""))
         }
     }
 }

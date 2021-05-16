@@ -8,17 +8,19 @@
 import UIKit
 
 protocol WeatherListDisplayLogic: AnyObject {
-    func displayWeathers(viewModel: WeatherList.ShowWeathers.ViewModel)
+    func displayWeathers(viewModel: WeatherListUseCases.ShowWeathers.ViewModel)
+    func displayDeletionStatus(status: String)
 }
 
-class WeatherListViewController: UIViewController {
+final class WeatherListViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var emptyLabel: UILabel!
     
     static let weatherCellHeight: CGFloat = 80
     var interactor: WeatherListBusinessLogic?
     var router: WeatherListRouterLogic?
-    var weathers: [WeatherList.ShowWeathers.ViewModel.DisplayWeather] = []
+    var weathers: [WeatherListUseCases.ShowWeathers.ViewModel.DisplayWeather] = []
         
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -50,7 +52,9 @@ class WeatherListViewController: UIViewController {
         super.viewDidLoad()
         tableView.register(UINib(nibName: "WeatherCell", bundle: nil), forCellReuseIdentifier: WeatherCell.reuseIdentifier)
         tableView.tableFooterView = UIView()
+        emptyLabel.isHidden = true
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(showSearch))
+        navigationItem.title = "Cities"
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -62,15 +66,23 @@ class WeatherListViewController: UIViewController {
         interactor?.fetchWeathers()
     }
     
-    @objc func showSearch() {
+    @objc private func showSearch() {
         router?.showSearchCity()
     }
 }
 
 extension WeatherListViewController: WeatherListDisplayLogic {
     
-    func displayWeathers(viewModel: WeatherList.ShowWeathers.ViewModel) {
+    func displayWeathers(viewModel: WeatherListUseCases.ShowWeathers.ViewModel) {
         weathers = viewModel.displayWeathers
+        emptyLabel.isHidden = !weathers.isEmpty
+        tableView.reloadData()
+    }
+    
+    func displayDeletionStatus(status: String) {
+        let alertController = UIAlertController(title: nil, message: status, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Ok", style: .default))
+        navigationController?.present(alertController, animated: true)
         tableView.reloadData()
     }
 }
@@ -85,6 +97,11 @@ extension WeatherListViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: WeatherCell.reuseIdentifier, for: indexPath) as? WeatherCell else { return UITableViewCell() }
         cell.weather = weathers[indexPath.row]
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        guard editingStyle == .delete else { return }
+        interactor?.deleteWeather(at: indexPath.row)
     }
 }
 

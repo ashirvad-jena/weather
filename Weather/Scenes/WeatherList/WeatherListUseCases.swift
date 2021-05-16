@@ -1,5 +1,5 @@
 //
-//  WeatherLists.swift
+//  WeatherListUseCases.swift
 //  Weather
 //
 //  Created by Ashirvad Jena on 15/05/21.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum WeatherList {
+enum WeatherListUseCases {
     
     // Use Cases
     enum ShowWeathers {
@@ -23,6 +23,17 @@ enum WeatherList {
                 let temperature: String
             }
             var displayWeathers: [DisplayWeather] = []
+        }
+    }
+    
+    enum DeleteWeather {
+        struct Request {
+            var weatherModel: WeatherModel
+        }
+        
+        struct Response {
+            var error: Error?
+            var weatherModel: WeatherModel?
         }
     }
 }

@@ -32,7 +32,7 @@ class SearchCityInteractorTests: XCTestCase {
     
     func testInteractorShouldPassNilToPresenterIfFetchFails() {
         sut?.presenter = SearchCityPresenterSpy()
-        let request = SearchCity.FetchWeather.Request(searchCityName: "")
+        let request = SearchCityUseCases.FetchWeather.Request(searchCityName: "")
         sut?.fetchWeatherDetails(for: request)
         let expect = expectation(description: "Wait for fetchWeather to return")
         let waitSeconds = 2
@@ -47,7 +47,7 @@ class SearchCityInteractorTests: XCTestCase {
 fileprivate class SearchCityPresenterSpy: SearchCityPresentationLogic {
     var weatherModel: WeatherModel?
     
-    func presentResult(from response: SearchCity.FetchWeather.Response) {
+    func presentResult(from response: SearchCityUseCases.FetchWeather.Response) {
         weatherModel = response.weatherModel
     }
     

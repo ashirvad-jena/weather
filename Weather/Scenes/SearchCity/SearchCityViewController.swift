@@ -12,7 +12,7 @@ protocol SearchCityDisplayLogic: AnyObject {
     func showError(message: String)
 }
 
-class SearchCityViewController: UIViewController {
+final class SearchCityViewController: UIViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var resultLabel: UILabel!
@@ -85,7 +85,7 @@ extension SearchCityViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchText = searchBar.text,
               !searchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return }
-        let request = SearchCity.FetchWeather.Request(searchCityName: searchBar.text ?? "")
+        let request = SearchCityUseCases.FetchWeather.Request(searchCityName: searchBar.text ?? "")
         interactor?.fetchWeatherDetails(for: request)
         searchBar.resignFirstResponder()
         searchBar.text = nil

@@ -11,6 +11,7 @@ protocol WeatherDatabaseProtocol {
     func saveWeatherToLocalStorage(_ weatherModel: WeatherModel)
     func readAllWeathersFromStorage() -> [WeatherModel]
     func isCityAvailable(_ cityId: Int) -> Bool
+    func delete(cityId: Int) -> Error?
 }
 
 class WeatherDatabaseWorker {
@@ -31,5 +32,9 @@ class WeatherDatabaseWorker {
     
     func isCityAvailable(_cityId: Int) -> Bool {
         return cityWeather?.isCityAvailable(_cityId) ?? false
+    }
+    
+    func delete(weatherModel: WeatherModel) -> Error? {
+        return cityWeather?.delete(cityId: weatherModel.cityId)
     }
 }

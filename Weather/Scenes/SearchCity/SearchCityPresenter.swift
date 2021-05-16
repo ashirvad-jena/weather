@@ -8,14 +8,14 @@
 import Foundation
 
 protocol SearchCityPresentationLogic {
-    func presentResult(from: SearchCity.FetchWeather.Response)
+    func presentResult(from: SearchCityUseCases.FetchWeather.Response)
 }
 
 class SearchCityPresenter: SearchCityPresentationLogic {
     
     weak var viewObject: SearchCityDisplayLogic?
     
-    func presentResult(from response: SearchCity.FetchWeather.Response) {
+    func presentResult(from response: SearchCityUseCases.FetchWeather.Response) {
         if let error = response.error {
             DispatchQueue.main.async {
                 self.viewObject?.showError(message: error.localizedDescription)

@@ -1,5 +1,5 @@
 //
-//  WeatherDetail.swift
+//  WeatherDetailUseCases.swift
 //  Weather
 //
 //  Created by Ashirvad Jena on 16/05/21.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum WeatherDetail {
+enum WeatherDetailUseCases {
     
     enum DetailWeather {
         struct Request {}

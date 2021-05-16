@@ -8,10 +8,10 @@
 import UIKit
 
 protocol WeatherDetailDisplayLogic {
-    func displayDetailWeather(viewModel: WeatherDetail.DetailWeather.ViewModel)
+    func displayDetailWeather(viewModel: WeatherDetailUseCases.DetailWeather.ViewModel)
 }
 
-class WeatherDetailViewController: UIViewController {
+final class WeatherDetailViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -23,8 +23,8 @@ class WeatherDetailViewController: UIViewController {
     var interactor: WeatherDetailBusinessLogic?
     
     // MARK: ViewModels for UI
-    private var detailWeatherHeader: WeatherDetail.DetailWeather.ViewModel.Header?
-    private var detailWeatherParams: [WeatherDetail.DetailWeather.ViewModel.Param] = []
+    private var detailWeatherHeader: WeatherDetailUseCases.DetailWeather.ViewModel.Header?
+    private var detailWeatherParams: [WeatherDetailUseCases.DetailWeather.ViewModel.Param] = []
     
     // MARK: Setup
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -57,7 +57,7 @@ class WeatherDetailViewController: UIViewController {
         tableView.register(UINib(nibName: "WeatherDetailHeaderCell", bundle: nil), forCellReuseIdentifier: WeatherDetailHeaderCell.reuseIdentifier)
         tableView.register(UINib(nibName: "WeatherDetailInfoCell", bundle: nil), forCellReuseIdentifier: WeatherDetailInfoCell.reuseIdentifier)
         tableView.tableFooterView = UIView()
-        navigationController?.title = "Weather Details"
+        navigationItem.title = "Weather Details"
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -71,7 +71,7 @@ class WeatherDetailViewController: UIViewController {
 }
 
 extension WeatherDetailViewController: WeatherDetailDisplayLogic {
-    func displayDetailWeather(viewModel: WeatherDetail.DetailWeather.ViewModel) {
+    func displayDetailWeather(viewModel: WeatherDetailUseCases.DetailWeather.ViewModel) {
         detailWeatherHeader = viewModel.header
         detailWeatherParams = viewModel.params
         tableView.reloadData()

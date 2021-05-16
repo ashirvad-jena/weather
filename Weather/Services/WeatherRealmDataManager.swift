@@ -63,4 +63,14 @@ class WeatherRealmDataManager: DatabaseManager, WeatherDatabaseProtocol {
             return false
         }
     }
+    
+    func delete(cityId: Int) -> Error? {
+        guard let realmObject = realm.objects(WeatherRealmobjcect.self).filter("cityId == \(cityId)").first else {
+            return WeatherError.unableToDeleteCity
+        }
+        write {
+            realm.delete(realmObject)
+        }
+        return nil
+    }
 }

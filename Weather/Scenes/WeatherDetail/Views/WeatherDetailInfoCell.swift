@@ -16,7 +16,7 @@ class WeatherDetailInfoCell: UITableViewCell {
     
     static let reuseIdentifier = "WeatherDetailInfoCell"
     
-    var param: WeatherDetail.DetailWeather.ViewModel.Param? {
+    var param: WeatherDetailUseCases.DetailWeather.ViewModel.Param? {
         didSet {
             infoIcon.image = param?.imageIcon
             infoTitleLabel.text = param?.title

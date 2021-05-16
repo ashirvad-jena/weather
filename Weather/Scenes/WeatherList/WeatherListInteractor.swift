@@ -9,6 +9,7 @@ import Foundation
 
 protocol WeatherListBusinessLogic {
     func fetchWeathers()
+    func deleteWeather(at index: Int)
 }
 
 protocol WeatherListDataSource {
@@ -23,7 +24,21 @@ class WeatherListInteractor: WeatherListBusinessLogic, WeatherListDataSource {
     
     func fetchWeathers() {
         weathers = databaseWorker.fetchAllWeathers()
-        let response = WeatherList.ShowWeathers.Response(weatherModels: weathers)
+        let response = WeatherListUseCases.ShowWeathers.Response(weatherModels: weathers)
         presenter?.presentFetchedWeathers(response: response)
+    }
+    
+    func deleteWeather(at index: Int) {
+        guard index < weathers.count else {
+            presenter?.presentDeleteWeather(response: WeatherListUseCases.DeleteWeather.Response(error: WeatherError.unableToDeleteCity, weatherModel: nil))
+            return
+        }
+        let weatherModel = weathers[index]
+        let error = databaseWorker.delete(weatherModel: weatherModel)
+        if error == nil {
+            weathers.remove(at: index)
+        }
+        presenter?.presentDeleteWeather(response: WeatherListUseCases.DeleteWeather.Response(error: error, weatherModel: weatherModel))
+        fetchWeathers()
     }
 }

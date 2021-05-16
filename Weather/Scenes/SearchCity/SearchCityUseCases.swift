@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum SearchCity {
+enum SearchCityUseCases {
     
     enum FetchWeather {
         struct Request {

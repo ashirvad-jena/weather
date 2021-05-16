@@ -1,5 +1,5 @@
 //
-//  WeatherDetailDataSource.swift
+//  WeatherDetailInteractor.swift
 //  Weather
 //
 //  Created by Ashirvad Jena on 16/05/21.
@@ -21,7 +21,7 @@ class WeatherDetailInteractor: WeatherDetailDataSource, WeatherDetailBusinessLog
     var presenter: WeatherDetailPresentationLogic?
     
     func getDetailWeather() {
-        let response  = WeatherDetail.DetailWeather.Response(weatherModel: weatherModel)
+        let response  = WeatherDetailUseCases.DetailWeather.Response(weatherModel: weatherModel)
         presenter?.showWeatherDetail(response: response)
     }
 }

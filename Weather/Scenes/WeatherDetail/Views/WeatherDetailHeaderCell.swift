@@ -22,7 +22,7 @@ class WeatherDetailHeaderCell: UITableViewCell {
     
     static let reuseIdentifier = "WeatherDetailHeaderCell"
     
-    var header: WeatherDetail.DetailWeather.ViewModel.Header? {
+    var header: WeatherDetailUseCases.DetailWeather.ViewModel.Header? {
         didSet {
             cityNameLabel.text = header?.cityName
             weatherTypeLabel.text = header?.weatherType

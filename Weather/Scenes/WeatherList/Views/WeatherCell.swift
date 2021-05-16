@@ -16,7 +16,7 @@ class WeatherCell: UITableViewCell {
     
     static let reuseIdentifier = "WeatherCell"
     
-    var weather: WeatherList.ShowWeathers.ViewModel.DisplayWeather? {
+    var weather: WeatherListUseCases.ShowWeathers.ViewModel.DisplayWeather? {
         didSet {
             dateLabel.text = weather?.date
             cityNameLabel.text = weather?.city
