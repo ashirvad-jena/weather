@@ -13,8 +13,8 @@ class WeatherRealmDataManager: DatabaseManager, WeatherDatabaseProtocol {
         let realmObject = WeatherRealmobjcect()
         realmObject.cityId = model.cityId
         realmObject.cityName = model.cityName
-        realmObject.weatherType = model.weatherType ?? ""
-        realmObject.weatherIconId = model.weatherIconId ?? ""
+        realmObject.weatherType = model.weatherType
+        realmObject.weatherIconId = model.weatherIconId
         realmObject.date = model.date
         realmObject.temperature = model.temperature
         realmObject.highTemperature = model.highTemperature ?? 0.0
@@ -98,13 +98,13 @@ class WeatherRealmDataManager: DatabaseManager, WeatherDatabaseProtocol {
                             weatherIconId: realmObj.weatherIconId,
                             date: realmObj.date,
                             temperature: realmObj.temperature,
-                            highTemperature: realmObj.highTemperature,
-                            lowTemperature: realmObj.lowTemperature,
+                            highTemperature: realmObj.highTemperature > 0 ? realmObj.highTemperature : 0,
+                            lowTemperature: realmObj.lowTemperature > 0 ? realmObj.lowTemperature : nil,
                             description: realmObj.typeDescription,
-                            feelsLikeTemperature: realmObj.feelsLikeTemperature,
-                            pressure: realmObj.pressure,
-                            humidity: realmObj.humidity,
-                            cloudiness: realmObj.cloudiness,
+                            feelsLikeTemperature: realmObj.feelsLikeTemperature > 0 ? realmObj.feelsLikeTemperature : nil,
+                            pressure: realmObj.pressure > 0 ? realmObj.pressure : nil,
+                            humidity: realmObj.humidity > 0 ? realmObj.humidity : nil,
+                            cloudiness: realmObj.cloudiness > 0 ? realmObj.cloudiness : nil,
                             sunrise: realmObj.sunrise,
                             sunset: realmObj.sunset)
     }

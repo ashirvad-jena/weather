@@ -7,14 +7,22 @@
 
 import UIKit
 
+/// This protocol defines the  display behaviour of all use cases for list of weathers
 protocol WeatherListDisplayLogic: AnyObject {
+    /// Provides a viewModel corresponding to the UI of a cell to show brief info about a city's weather
+    /// - Parameter viewModel:
     func displayWeathers(viewModel: WeatherListUseCases.ShowWeathers.ViewModel)
+    /// Provides the status after a deletion operation id performed on a city's weather
+    /// - Parameter status: information to be displayed to user
     func displayDeletionStatus(status: String)
+    /// Provides a viewModel corresponding to the UI of a cell after updating a particular city's weather
+    /// - Parameter viewModel:
     func displayReload(viewModel: WeatherListUseCases.UpdateWeather.ViewModel)
 }
 
 final class WeatherListViewController: UIViewController {
 
+    // MARK:- IBOutlets
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var emptyLabel: UILabel!
         
@@ -23,7 +31,8 @@ final class WeatherListViewController: UIViewController {
     private var router: WeatherListRouterLogic?
     private var weathers: [WeatherListUseCases.DisplayWeather] = []
     private let refreshControl = UIRefreshControl()
-        
+     
+    // MARK: - Setup
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         setup()
@@ -34,8 +43,7 @@ final class WeatherListViewController: UIViewController {
         setup()
     }
     
-    // MARK: Setup
-    
+    // MARK: - Lifecycle Methods
     private func setup() {
         let viewController = self
         let interactor = WeatherListInteractor()
@@ -103,6 +111,7 @@ extension WeatherListViewController: WeatherListDisplayLogic {
     }
 }
 
+// MARK: - UITableViewDataSource
 extension WeatherListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -121,6 +130,7 @@ extension WeatherListViewController: UITableViewDataSource {
     }
 }
 
+// MARK: - UITableViewDelegate
 extension WeatherListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return WeatherListViewController.weatherCellHeight

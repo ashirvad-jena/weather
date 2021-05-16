@@ -7,8 +7,10 @@
 
 import Foundation
 
+/// Defines 3 use cases i.e, `Fetch`,` Delete` & `Update` for Weather List scene
 enum WeatherListUseCases {
     
+    /// Presentable format that is displayed to the  user
     struct DisplayWeather {
         let date: String
         let city: String

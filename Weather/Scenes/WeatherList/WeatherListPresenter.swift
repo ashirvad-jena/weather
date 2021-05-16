@@ -7,9 +7,13 @@
 
 import Foundation
 
+/// This protocol defines the methods to map  data into presentable format.
 protocol WeatherListPresentationLogic {
+    /// Maps `WeatherListUseCases.ShowWeathers.Response` into  presentable format after fetching from local storage
     func presentFetchedWeathers(response: WeatherListUseCases.ShowWeathers.Response)
+    /// Maps `WeatherListUseCases.DeleteWeather.Response` into presentable format after deletion
     func presentDeleteWeather(response: WeatherListUseCases.DeleteWeather.Response)
+    /// Maps `WeatherListUseCases.UpdateWeather.Response` into presentable format after updation
     func presentReloadWeather(response: WeatherListUseCases.UpdateWeather.Response)
 }
 

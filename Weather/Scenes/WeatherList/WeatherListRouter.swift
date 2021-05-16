@@ -7,11 +7,15 @@
 
 import Foundation
 
+/// Defines the routing logic form `Weather List` scene
 protocol WeatherListRouterLogic {
+    /// Navigate to `search city `scene
     func showSearchCity()
+    /// Navigate to `detail weather `scene after a city is selected
     func showWeatherDetail()
 }
 
+/// Protocol to pass data via router to destination
 protocol WeatherListDataPassing {
     var dataStore: WeatherListDataSource? { get }
 }

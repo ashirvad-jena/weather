@@ -7,16 +7,23 @@
 
 import Foundation
 
+/// Business Logic for `weatherList scene`, which `Interactor` should adhere, to prepare the data before handing over to `Presenter`
 protocol WeatherListBusinessLogic {
+    /// Fetch list of city's weathers' from local storage
     func fetchWeathers()
+    /// update each of the city in local storage with latest data and update corresponding ui
     func updateWeathers()
+    /// Deletes the selected weather by the user
+    /// - Parameter index: index of the model to be deleted
     func deleteWeather(at index: Int)
 }
 
+/// Data source to be used for the List of weather
 protocol WeatherListDataSource {
     var weathers: [WeatherModel] { get }
 }
 
+/// This class is responsible for all the business logic
 class WeatherListInteractor: WeatherListBusinessLogic, WeatherListDataSource {
 
     var presenter: WeatherListPresentationLogic?
@@ -54,6 +61,9 @@ class WeatherListInteractor: WeatherListBusinessLogic, WeatherListDataSource {
         fetchWeathers()
     }
     
+    
+    /// Updates local storage, UI with latest data
+    /// - Parameter serverModel: model received from server
     private func updateWeatherModel(from serverModel: ServerWeatherModel) {
         let weatherModel = Utility.mapServerModelToWeatherModel(serverModel)
         databaseWorker.update(weatherModel: weatherModel)
