@@ -18,9 +18,10 @@ struct ServerWeatherModel: Codable {
     let clouds: Clouds?
     let dt: Int?
     let sys: Sys?
-    let timezone, id: Int?
+    let timezone: Int?
     let name: String
     let cod: Int?
+    let id: Int
     
     // MARK: - Coord
     struct Coord: Codable {

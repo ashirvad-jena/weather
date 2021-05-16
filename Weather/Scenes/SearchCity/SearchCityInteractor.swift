@@ -26,14 +26,21 @@ class SearchCityInteractor: SearchCityBusinessLogic {
                 self.presenter?.presentResult(from: SearchCity.FetchWeather.Response(weatherModel: nil, error: error))
                 
             } else if let serverModel = serverModel {
-                self.mapServerModelToWeatherModel(serverModel)
-                self.presenter?.presentResult(from: SearchCity.FetchWeather.Response(weatherModel: self.weatherModel, error: nil))
+                
+                if self.databaseWorker.isCityAvailable(_cityId: serverModel.id) {
+                    self.presenter?.presentResult(from: SearchCity.FetchWeather.Response(weatherModel: nil, error: WeatherError.cityAlreadyFetched))
+                    
+                } else {
+                    self.mapServerModelToWeatherModel(serverModel)
+                    self.presenter?.presentResult(from: SearchCity.FetchWeather.Response(weatherModel: self.weatherModel, error: nil))
+                }
             }
         })
     }
     
     func mapServerModelToWeatherModel(_ serverModel: ServerWeatherModel) {
         let model = WeatherModel(
+            cityId: serverModel.id,
             cityName: serverModel.name,
             weatherType: serverModel.weather?.first?.main,
             weatherIconId: serverModel.weather?.first?.icon,

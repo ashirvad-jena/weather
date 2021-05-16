@@ -9,6 +9,7 @@ import RealmSwift
 import Foundation
 
 class WeatherRealmobjcect: Object {
+    @objc dynamic var cityId = 0
     @objc dynamic var cityName = ""
     @objc dynamic var weatherType = ""
     @objc dynamic var weatherIconId = ""

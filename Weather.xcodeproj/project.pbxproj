@@ -188,8 +188,7 @@
 			children = (
 				C41ED62A264F7D5800182D5D /* AppDelegate.swift */,
 				C41ED62C264F7D5800182D5D /* SceneDelegate.swift */,
-				C47614182650226A006EA8D8 /* WeatherRealmObject.swift */,
-				C476141A26502679006EA8D8 /* DatabaseManager.swift */,
+				C476142E26513614006EA8D8 /* Helpers */,
 				C41ED686264FCE5C00182D5D /* Services */,
 				C41ED678264FBEA100182D5D /* Models */,
 				C41ED689264FD3EA00182D5D /* Workers */,
@@ -296,6 +295,8 @@
 			children = (
 				C41ED679264FBEB100182D5D /* ServerWeatherModel.swift */,
 				C41ED687264FD0FA00182D5D /* WeatherModel.swift */,
+				C47614182650226A006EA8D8 /* WeatherRealmObject.swift */,
+				C47614202650C53D006EA8D8 /* WeatherErrors.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -313,7 +314,6 @@
 			children = (
 				C476141C265026B3006EA8D8 /* WeatherRealmDataManager.swift */,
 				C41ED684264FCE5600182D5D /* WeatherAPI.swift */,
-				C47614202650C53D006EA8D8 /* WeatherErrors.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -343,6 +343,14 @@
 				C41ED676264FBBA700182D5D /* SearchCity */,
 			);
 			path = Scenes;
+			sourceTree = "<group>";
+		};
+		C476142E26513614006EA8D8 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				C476141A26502679006EA8D8 /* DatabaseManager.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		D71B4F790F9815D3F28068DC /* Pods */ = {

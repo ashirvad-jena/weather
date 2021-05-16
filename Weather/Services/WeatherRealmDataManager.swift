@@ -11,6 +11,7 @@ class WeatherRealmDataManager: DatabaseManager, WeatherDatabaseProtocol {
     
     func saveWeatherToLocalStorage(_ model: WeatherModel) {
         let realmObject = WeatherRealmobjcect()
+        realmObject.cityId = model.cityId
         realmObject.cityName = model.cityName
         realmObject.weatherType = model.weatherType ?? ""
         realmObject.weatherIconId = model.weatherIconId ?? ""
@@ -36,7 +37,8 @@ class WeatherRealmDataManager: DatabaseManager, WeatherDatabaseProtocol {
             .sorted(byKeyPath: "createdDate")
         var weatherModels: [WeatherModel] = []
         weatherModels = realmObjects.map({ realmObj in
-            return WeatherModel(cityName: realmObj.cityName,
+            return WeatherModel(cityId: realmObj.cityId,
+                                cityName: realmObj.cityName,
                                 weatherType: realmObj.weatherType,
                                 weatherIconId: realmObj.weatherIconId,
                                 date: realmObj.date,
@@ -52,5 +54,13 @@ class WeatherRealmDataManager: DatabaseManager, WeatherDatabaseProtocol {
                                 sunset: realmObj.sunset)
         })
         return weatherModels
+    }
+    
+    func isCityAvailable(_ cityId: Int) -> Bool {
+        if let _ = realm.objects(WeatherRealmobjcect.self).filter("cityId == \(cityId)").first {
+            return true
+        } else {
+            return false
+        }
     }
 }

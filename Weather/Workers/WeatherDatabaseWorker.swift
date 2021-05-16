@@ -10,6 +10,7 @@ import Foundation
 protocol WeatherDatabaseProtocol {
     func saveWeatherToLocalStorage(_ weatherModel: WeatherModel)
     func readAllWeathersFromStorage() -> [WeatherModel]
+    func isCityAvailable(_ cityId: Int) -> Bool
 }
 
 class WeatherDatabaseWorker {
@@ -26,5 +27,9 @@ class WeatherDatabaseWorker {
     
     func fetchAllWeathers() -> [WeatherModel] {
         return cityWeather?.readAllWeathersFromStorage() ?? []
+    }
+    
+    func isCityAvailable(_cityId: Int) -> Bool {
+        return cityWeather?.isCityAvailable(_cityId) ?? false
     }
 }

@@ -10,6 +10,7 @@ import Foundation
 enum WeatherError: Error {
     case fetchFailure
     case invalidCityName
+    case cityAlreadyFetched
     case unknown
 }
 
@@ -20,6 +21,8 @@ extension WeatherError: LocalizedError {
             return "Oops!!. Couldn't fetch results. Please try after sometime."
         case .invalidCityName:
             return "Please enter valid city name"
+        case .cityAlreadyFetched:
+            return "City is already available in weathers list!!"
         case .unknown:
             return "Something went wrong. Please try again."
         }
