@@ -21,6 +21,26 @@ class WeatherDetailHeaderCell: UITableViewCell {
     
     static let reuseIdentifier = "WeatherDetailHeaderCell"
     
+    var header: WeatherDetail.DetailWeather.ViewModel.Header? {
+        didSet {
+            cityNameLabel.text = header?.cityName
+            weatherTypeLabel.text = header?.weatherType
+//            weatherTypeIcon.image =
+            temperatureLabel.text = header?.temperature
+            if let highTemp = header?.highTemperature {
+                highTemperatureLabel.text = highTemp
+            } else {
+                highTemperatureLabel.isHidden = true
+            }
+            if let lowTemp = header?.lowTemperature {
+                lowTemperatureLabel.text = lowTemp
+            } else {
+                lowTemperatureLabel.isHidden = true
+            }
+            descriptionLabel.text = header?.description
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         

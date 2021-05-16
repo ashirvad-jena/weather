@@ -51,6 +51,15 @@ class SearchCityViewController: UIViewController {
         saveButton.isHidden = true
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.navigationBar.isHidden = false
+    }
+    
     @IBAction func saveButtonTapped(_ sender: Any) {
         interactor?.saveWeatherModel()
         router?.navigateToWeatherListViewController()
@@ -80,7 +89,6 @@ extension SearchCityViewController: UISearchBarDelegate {
         interactor?.fetchWeatherDetails(for: request)
         searchBar.resignFirstResponder()
         searchBar.text = nil
-        
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {

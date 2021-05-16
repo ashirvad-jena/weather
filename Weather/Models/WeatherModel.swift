@@ -10,6 +10,7 @@ import Foundation
 struct WeatherModel {
     let cityName: String
     let weatherType: String?
+    let weatherIconId: String?
     let date: Date
     let temperature: Double
     let highTemperature: Double?

@@ -13,6 +13,7 @@ class WeatherRealmDataManager: DatabaseManager, WeatherDatabaseProtocol {
         let realmObject = WeatherRealmobjcect()
         realmObject.cityName = model.cityName
         realmObject.weatherType = model.weatherType ?? ""
+        realmObject.weatherIconId = model.weatherIconId ?? ""
         realmObject.date = model.date
         realmObject.temperature = model.temperature
         realmObject.highTemperature = model.highTemperature ?? 0.0
@@ -24,18 +25,20 @@ class WeatherRealmDataManager: DatabaseManager, WeatherDatabaseProtocol {
         realmObject.cloudiness = model.cloudiness ?? 0
         realmObject.sunrise = model.sunrise ?? Date()
         realmObject.sunset = model.sunset ?? Date()
+        realmObject.createdDate = Date()
         write {
             realm.add(realmObject)
         }
     }
     
-    func readAll() -> [WeatherModel] {
+    func readAllWeathersFromStorage() -> [WeatherModel] {
         let realmObjects = realm.objects(WeatherRealmobjcect.self)
             .sorted(byKeyPath: "createdDate")
         var weatherModels: [WeatherModel] = []
         weatherModels = realmObjects.map({ realmObj in
             return WeatherModel(cityName: realmObj.cityName,
                                 weatherType: realmObj.weatherType,
+                                weatherIconId: realmObj.weatherIconId,
                                 date: realmObj.date,
                                 temperature: realmObj.temperature,
                                 highTemperature: realmObj.highTemperature,

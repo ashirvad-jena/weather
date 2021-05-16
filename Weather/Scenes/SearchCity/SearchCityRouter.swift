@@ -16,6 +16,6 @@ class SearchCityRouter: SearchCityRouterLogic {
     weak var viewController: SearchCityViewController?
     
     func navigateToWeatherListViewController() {
-        viewController?.dismiss(animated: true)
+        viewController?.navigationController?.popViewController(animated: true)
     }
 }

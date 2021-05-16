@@ -16,6 +16,14 @@ class WeatherDetailInfoCell: UITableViewCell {
     
     static let reuseIdentifier = "WeatherDetailInfoCell"
     
+    var param: WeatherDetail.DetailWeather.ViewModel.Param? {
+        didSet {
+            infoIcon.image = param?.imageIcon
+            infoTitleLabel.text = param?.title
+            infoDescriptionLabel.text = param?.detail
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         

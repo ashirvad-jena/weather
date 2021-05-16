@@ -36,6 +36,7 @@ class SearchCityInteractor: SearchCityBusinessLogic {
         let model = WeatherModel(
             cityName: serverModel.name,
             weatherType: serverModel.weather?.first?.main,
+            weatherIconId: serverModel.weather?.first?.icon,
             date: Date(timeIntervalSince1970: TimeInterval(serverModel.dt ?? 0)),
             temperature: serverModel.main.temp ?? 0.0,
             highTemperature: serverModel.main.tempMax,

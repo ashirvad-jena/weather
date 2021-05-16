@@ -16,8 +16,11 @@ class WeatherCell: UITableViewCell {
     
     static let reuseIdentifier = "WeatherCell"
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
+    var weather: WeatherList.ShowWeathers.ViewModel.DisplayWeather? {
+        didSet {
+            dateLabel.text = weather?.date
+            cityNameLabel.text = weather?.city
+            temperatureLabel.text = weather?.temperature
+        }
     }
 }

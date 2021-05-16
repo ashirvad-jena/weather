@@ -11,6 +11,7 @@ import Foundation
 class WeatherRealmobjcect: Object {
     @objc dynamic var cityName = ""
     @objc dynamic var weatherType = ""
+    @objc dynamic var weatherIconId = ""
     @objc dynamic var date = Date()
     @objc dynamic var temperature = 0.0
     @objc dynamic var highTemperature = 0.0
@@ -22,5 +23,5 @@ class WeatherRealmobjcect: Object {
     @objc dynamic var cloudiness = 0.0
     @objc dynamic var sunrise = Date()
     @objc dynamic var sunset = Date()
-    @objc dynamic let createdDate = Date()
+    @objc dynamic var createdDate = Date()
 }

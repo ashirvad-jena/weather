@@ -9,6 +9,7 @@ import Foundation
 
 protocol WeatherDatabaseProtocol {
     func saveWeatherToLocalStorage(_ weatherModel: WeatherModel)
+    func readAllWeathersFromStorage() -> [WeatherModel]
 }
 
 class WeatherDatabaseWorker {
@@ -21,5 +22,9 @@ class WeatherDatabaseWorker {
     
     func save(weatherModel: WeatherModel) {
         cityWeather?.saveWeatherToLocalStorage(weatherModel)
+    }
+    
+    func fetchAllWeathers() -> [WeatherModel] {
+        return cityWeather?.readAllWeathersFromStorage() ?? []
     }
 }
