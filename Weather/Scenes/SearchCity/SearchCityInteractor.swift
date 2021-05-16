@@ -38,14 +38,14 @@ class SearchCityInteractor: SearchCityBusinessLogic {
             weatherType: serverModel.weather?.first?.main,
             weatherIconId: serverModel.weather?.first?.icon,
             date: Date(timeIntervalSince1970: TimeInterval(serverModel.dt ?? 0)),
-            temperature: serverModel.main.temp ?? 0.0,
+            temperature: serverModel.main.temp,
             highTemperature: serverModel.main.tempMax,
             lowTemperature: serverModel.main.tempMin,
-            description: serverModel.weather?.description ?? "",
+            description: serverModel.weather?.first?.weatherDescription ?? "",
             feelsLikeTemperature: serverModel.main.feelsLike,
             pressure: serverModel.main.pressure,
             humidity: serverModel.main.humidity,
-            cloudiness: serverModel.clouds?.all ?? 0.0,
+            cloudiness: serverModel.clouds?.all,
             sunrise: Date(timeIntervalSince1970: TimeInterval(serverModel.sys?.sunrise ?? 0)),
             sunset: Date(timeIntervalSince1970: TimeInterval(serverModel.sys?.sunset ?? 0)))
         

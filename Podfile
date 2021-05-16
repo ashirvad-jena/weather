@@ -7,14 +7,12 @@ target 'Weather' do
 
   # Pods for Weather
   pod 'RealmSwift'
-
+  pod 'SDWebImage', '~> 5.0'
+  
   target 'WeatherTests' do
-    inherit! :search_paths
-    # Pods for testing
   end
 
   target 'WeatherUITests' do
-    # Pods for testing
   end
 
 end

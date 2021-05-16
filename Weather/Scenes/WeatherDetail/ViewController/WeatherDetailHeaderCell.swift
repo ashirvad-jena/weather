@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class WeatherDetailHeaderCell: UITableViewCell {
 
@@ -25,7 +26,7 @@ class WeatherDetailHeaderCell: UITableViewCell {
         didSet {
             cityNameLabel.text = header?.cityName
             weatherTypeLabel.text = header?.weatherType
-//            weatherTypeIcon.image =
+            weatherTypeIcon.sd_setImage(with: header?.weatherTypeImageUrl, placeholderImage: UIImage(named: "defaultWeatherIcon"))
             temperatureLabel.text = header?.temperature
             if let highTemp = header?.highTemperature {
                 highTemperatureLabel.text = highTemp
@@ -43,6 +44,7 @@ class WeatherDetailHeaderCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+        weatherTypeIcon.backgroundColor = .white
+        weatherTypeIcon.layer.cornerRadius = 4
     }
 }

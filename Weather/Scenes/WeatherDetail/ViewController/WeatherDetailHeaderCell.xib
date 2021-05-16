@@ -38,8 +38,8 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cloud.drizzle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="qtp-XL-Oi4">
-                                                <rect key="frame" x="92" y="0.0" width="25" height="26.5"/>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultWeatherIcon" translatesAutoresizingMaskIntoConstraints="NO" id="qtp-XL-Oi4">
+                                                <rect key="frame" x="92" y="0.0" width="25" height="25"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="kTm-1B-zVv"/>
                                                     <constraint firstAttribute="width" constant="25" id="yfH-wm-vFb"/>
@@ -122,7 +122,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="cloud.drizzle" catalog="system" width="128" height="125"/>
+        <image name="defaultWeatherIcon" width="33.5" height="33.5"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

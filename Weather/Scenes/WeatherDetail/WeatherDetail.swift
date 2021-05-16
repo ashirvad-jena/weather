@@ -23,7 +23,7 @@ enum WeatherDetail {
                 let weatherTypeImageUrl: URL?
                 let temperature: String?
                 var highTemperature: String? = nil
-                let lowTemperature: String?
+                var lowTemperature: String? = nil
                 let description: String?
             }
             struct Param {

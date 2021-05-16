@@ -26,6 +26,6 @@ class WeatherDetailInfoCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+        infoIcon.tintColor = UIColor(named: "iconTint")
     }
 }

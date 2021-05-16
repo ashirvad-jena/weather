@@ -29,7 +29,8 @@ struct ServerWeatherModel: Codable {
     
     // MARK: - Main
     struct Main: Codable {
-        let temp, feelsLike, tempMin, tempMax: Double?
+        let temp: Double
+        let feelsLike, tempMin, tempMax: Double?
         let pressure, humidity: Int?
         
         enum CodingKeys: String, CodingKey {
