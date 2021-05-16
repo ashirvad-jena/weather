@@ -12,6 +12,9 @@ protocol WeatherDatabaseProtocol {
     func readAllWeathersFromStorage() -> [WeatherModel]
     func isCityAvailable(_ cityId: Int) -> Bool
     func delete(cityId: Int) -> Error?
+    func fetchAllCityNames() -> [String]
+    func update(weatherModel: WeatherModel)
+    func fetchWeather(for cityId: Int) -> WeatherModel?
 }
 
 class WeatherDatabaseWorker {
@@ -36,5 +39,17 @@ class WeatherDatabaseWorker {
     
     func delete(weatherModel: WeatherModel) -> Error? {
         return cityWeather?.delete(cityId: weatherModel.cityId)
+    }
+    
+    func fetchAllCityNames() -> [String] {
+        return cityWeather?.fetchAllCityNames() ?? []
+    }
+    
+    func update(weatherModel: WeatherModel) {
+        cityWeather?.update(weatherModel: weatherModel)
+    }
+    
+    func readWeatherModel(for cityId: Int) -> WeatherModel? {
+        return cityWeather?.fetchWeather(for: cityId)
     }
 }

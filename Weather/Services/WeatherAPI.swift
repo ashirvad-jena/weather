@@ -11,6 +11,7 @@ struct WeatherAPI: FetchCityWeatherProtocol {
     
     static let apiKey = "c609091a0a8fd1c5dbc2ce965aa09db1"
     
+    // NOTE: Sometimes, upon multiple fetch the dt shows less time than the previous fetch.
     func fetchWeatherFromApi(for searchName: String, completionHandler: @escaping (ServerWeatherModel?, Error?) -> Void) {
         guard let urlRequest = getUrlRequest(for: searchName) else {
             completionHandler(nil, WeatherError.invalidCityName)

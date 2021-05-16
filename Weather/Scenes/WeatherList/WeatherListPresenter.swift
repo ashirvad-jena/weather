@@ -10,29 +10,31 @@ import Foundation
 protocol WeatherListPresentationLogic {
     func presentFetchedWeathers(response: WeatherListUseCases.ShowWeathers.Response)
     func presentDeleteWeather(response: WeatherListUseCases.DeleteWeather.Response)
+    func presentReloadWeather(response: WeatherListUseCases.UpdateWeather.Response)
 }
 
 class WeatherListPresenter: WeatherListPresentationLogic {
 
     weak var viewObject: WeatherListDisplayLogic?
+    private var viewModel: WeatherListUseCases.ShowWeathers.ViewModel?
     
     private var timeFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "hh:mm a"
+        formatter.dateFormat = "EEE, hh:mm a"
         return formatter
     }()
     
     func presentFetchedWeathers(response: WeatherListUseCases.ShowWeathers.Response) {
-        var displayWeathers: [WeatherListUseCases.ShowWeathers.ViewModel.DisplayWeather] = []
+        var displayWeathers: [WeatherListUseCases.DisplayWeather] = []
         displayWeathers = response.weatherModels.map({ weatherModel in
-            return WeatherListUseCases.ShowWeathers.ViewModel.DisplayWeather(
+            return WeatherListUseCases.DisplayWeather(
                 date: timeFormatter.string(from: weatherModel.date),
                 city: weatherModel.cityName,
                 temperature: String(format: "%.1f°C", weatherModel.temperature))
         })
-        let viewModel = WeatherListUseCases.ShowWeathers.ViewModel(displayWeathers: displayWeathers)
+        viewModel = WeatherListUseCases.ShowWeathers.ViewModel(displayWeathers: displayWeathers)
         DispatchQueue.main.async {
-            self.viewObject?.displayWeathers(viewModel: viewModel)
+            self.viewObject?.displayWeathers(viewModel: self.viewModel!)
         }
     }
     
@@ -41,6 +43,22 @@ class WeatherListPresenter: WeatherListPresentationLogic {
             viewObject?.displayDeletionStatus(status: error.localizedDescription)
         } else {
             viewObject?.displayDeletionStatus(status: "Deleted " + (response.weatherModel?.cityName ?? ""))
+        }
+    }
+    
+    func presentReloadWeather(response: WeatherListUseCases.UpdateWeather.Response) {
+        guard let viewModel = viewModel else { return }
+        var existingDisplayWeathers = viewModel.displayWeathers
+        let indexPath = IndexPath(row: response.updatedIndex, section: 0)
+        let weatherModel = response.updatedWeatherModel
+        let displayWeather = WeatherListUseCases.DisplayWeather(
+            date: timeFormatter.string(from: weatherModel.date),
+            city: weatherModel.cityName,
+            temperature: String(format: "%.1f°C", weatherModel.temperature))
+        existingDisplayWeathers[response.updatedIndex] = displayWeather
+        let updatedViewModel = WeatherListUseCases.UpdateWeather.ViewModel(indexPath: indexPath, displayWeathers: existingDisplayWeathers)
+        DispatchQueue.main.async {
+            self.viewObject?.displayReload(viewModel: updatedViewModel)
         }
     }
 }

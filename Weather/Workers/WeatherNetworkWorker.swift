@@ -11,7 +11,7 @@ protocol FetchCityWeatherProtocol {
     func fetchWeatherFromApi(for searchName: String, completionHandler: @escaping (ServerWeatherModel?, Error?) -> Void)
 }
 
-class WeatherWorker {
+class WeatherNetworkWorker {
     
     var cityWeather: FetchCityWeatherProtocol?
     
@@ -20,6 +20,12 @@ class WeatherWorker {
     }
     
     func fetchWeatherDetails(for cityName: String, completionHandler: @escaping (ServerWeatherModel?, Error?) -> Void) {
+        cityWeather?.fetchWeatherFromApi(for: cityName, completionHandler: { serverWeatherModel, error in
+            completionHandler(serverWeatherModel, error)
+        })
+    }
+    
+    func updateWeatherDetails(for cityName: String, completionHandler: @escaping (ServerWeatherModel?, Error?) -> Void) {
         cityWeather?.fetchWeatherFromApi(for: cityName, completionHandler: { serverWeatherModel, error in
             completionHandler(serverWeatherModel, error)
         })

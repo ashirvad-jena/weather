@@ -37,21 +37,7 @@ class WeatherRealmDataManager: DatabaseManager, WeatherDatabaseProtocol {
             .sorted(byKeyPath: "createdDate")
         var weatherModels: [WeatherModel] = []
         weatherModels = realmObjects.map({ realmObj in
-            return WeatherModel(cityId: realmObj.cityId,
-                                cityName: realmObj.cityName,
-                                weatherType: realmObj.weatherType,
-                                weatherIconId: realmObj.weatherIconId,
-                                date: realmObj.date,
-                                temperature: realmObj.temperature,
-                                highTemperature: realmObj.highTemperature,
-                                lowTemperature: realmObj.lowTemperature,
-                                description: realmObj.typeDescription,
-                                feelsLikeTemperature: realmObj.feelsLikeTemperature,
-                                pressure: realmObj.pressure,
-                                humidity: realmObj.humidity,
-                                cloudiness: realmObj.cloudiness,
-                                sunrise: realmObj.sunrise,
-                                sunset: realmObj.sunset)
+            return self.mapRealmObjectToWeatherModel(realmObj: realmObj)
         })
         return weatherModels
     }
@@ -72,5 +58,54 @@ class WeatherRealmDataManager: DatabaseManager, WeatherDatabaseProtocol {
             realm.delete(realmObject)
         }
         return nil
+    }
+    
+    func fetchAllCityNames() -> [String] {
+        let cityNames = realm.objects(WeatherRealmobjcect.self).map({ $0.cityName })
+        return Array(cityNames)
+    }
+    
+    func update(weatherModel: WeatherModel) {
+        if let realmObject = realm.objects(WeatherRealmobjcect.self).filter("cityId == \(weatherModel.cityId)").first {
+            write {
+                realmObject.cityName = weatherModel.cityName
+                realmObject.weatherType = weatherModel.weatherType ?? ""
+                realmObject.weatherIconId = weatherModel.weatherIconId ?? ""
+                realmObject.date = weatherModel.date
+                realmObject.temperature = weatherModel.temperature
+                realmObject.highTemperature = weatherModel.highTemperature ?? 0.0
+                realmObject.lowTemperature = weatherModel.lowTemperature ?? 0.0
+                realmObject.typeDescription = weatherModel.description ?? ""
+                realmObject.feelsLikeTemperature = weatherModel.feelsLikeTemperature ?? 0.0
+                realmObject.pressure = weatherModel.pressure ?? 0
+                realmObject.humidity = weatherModel.humidity ?? 0
+                realmObject.cloudiness = weatherModel.cloudiness ?? 0
+                realmObject.sunrise = weatherModel.sunrise ?? Date()
+                realmObject.sunset = weatherModel.sunset ?? Date()
+            }
+        }
+    }
+    
+    func fetchWeather(for cityId: Int) -> WeatherModel? {
+        guard let realmObject = realm.objects(WeatherRealmobjcect.self).filter("cityId == \(cityId)").first else { return nil }
+        return mapRealmObjectToWeatherModel(realmObj: realmObject)
+    }
+    
+    private func mapRealmObjectToWeatherModel(realmObj: WeatherRealmobjcect) -> WeatherModel {
+        return WeatherModel(cityId: realmObj.cityId,
+                            cityName: realmObj.cityName,
+                            weatherType: realmObj.weatherType,
+                            weatherIconId: realmObj.weatherIconId,
+                            date: realmObj.date,
+                            temperature: realmObj.temperature,
+                            highTemperature: realmObj.highTemperature,
+                            lowTemperature: realmObj.lowTemperature,
+                            description: realmObj.typeDescription,
+                            feelsLikeTemperature: realmObj.feelsLikeTemperature,
+                            pressure: realmObj.pressure,
+                            humidity: realmObj.humidity,
+                            cloudiness: realmObj.cloudiness,
+                            sunrise: realmObj.sunrise,
+                            sunset: realmObj.sunset)
     }
 }

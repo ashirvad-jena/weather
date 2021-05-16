@@ -10,11 +10,11 @@ import XCTest
 
 class WeatherNetworkWorkerTests: XCTestCase {
     
-    var sut: WeatherWorker!
+    var sut: WeatherNetworkWorker!
 
     override func setUp() {
         super.setUp()
-        sut = WeatherWorker(cityWeather: FetchCityWeatherSpy())
+        sut = WeatherNetworkWorker(cityWeather: FetchCityWeatherSpy())
     }
     
     override func tearDown() {

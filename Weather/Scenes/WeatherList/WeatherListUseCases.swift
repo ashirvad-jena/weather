@@ -9,19 +9,18 @@ import Foundation
 
 enum WeatherListUseCases {
     
-    // Use Cases
+    struct DisplayWeather {
+        let date: String
+        let city: String
+        let temperature: String
+    }
+    
     enum ShowWeathers {
-        
         struct Response {
             var weatherModels: [WeatherModel] = []
         }
         
         struct ViewModel {
-            struct DisplayWeather {
-                let date: String
-                let city: String
-                let temperature: String
-            }
             var displayWeathers: [DisplayWeather] = []
         }
     }
@@ -34,6 +33,18 @@ enum WeatherListUseCases {
         struct Response {
             var error: Error?
             var weatherModel: WeatherModel?
+        }
+    }
+    
+    enum UpdateWeather {
+        struct Response {
+            let updatedWeatherModel: WeatherModel
+            let updatedIndex: Int
+        }
+        
+        struct ViewModel {
+            let indexPath: IndexPath
+            let displayWeathers: [DisplayWeather]
         }
     }
 }

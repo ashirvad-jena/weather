@@ -10,17 +10,19 @@ import UIKit
 protocol WeatherListDisplayLogic: AnyObject {
     func displayWeathers(viewModel: WeatherListUseCases.ShowWeathers.ViewModel)
     func displayDeletionStatus(status: String)
+    func displayReload(viewModel: WeatherListUseCases.UpdateWeather.ViewModel)
 }
 
 final class WeatherListViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var emptyLabel: UILabel!
-    
+        
     static let weatherCellHeight: CGFloat = 80
-    var interactor: WeatherListBusinessLogic?
-    var router: WeatherListRouterLogic?
-    var weathers: [WeatherListUseCases.ShowWeathers.ViewModel.DisplayWeather] = []
+    private var interactor: WeatherListBusinessLogic?
+    private var router: WeatherListRouterLogic?
+    private var weathers: [WeatherListUseCases.DisplayWeather] = []
+    private let refreshControl = UIRefreshControl()
         
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -55,6 +57,8 @@ final class WeatherListViewController: UIViewController {
         emptyLabel.isHidden = true
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(showSearch))
         navigationItem.title = "Cities"
+        refreshControl.addTarget(self, action: #selector(updateWeatherInfo), for: .valueChanged)
+        tableView.refreshControl = refreshControl
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -68,6 +72,10 @@ final class WeatherListViewController: UIViewController {
     
     @objc private func showSearch() {
         router?.showSearchCity()
+    }
+    
+    @objc private func updateWeatherInfo() {
+        interactor?.updateWeathers()
     }
 }
 
@@ -84,6 +92,14 @@ extension WeatherListViewController: WeatherListDisplayLogic {
         alertController.addAction(UIAlertAction(title: "Ok", style: .default))
         navigationController?.present(alertController, animated: true)
         tableView.reloadData()
+    }
+    
+    func displayReload(viewModel: WeatherListUseCases.UpdateWeather.ViewModel) {
+        weathers = viewModel.displayWeathers
+        tableView.reloadRows(at: [viewModel.indexPath], with: .automatic)
+        if refreshControl.isRefreshing {
+            refreshControl.endRefreshing()
+        }
     }
 }
 
@@ -114,4 +130,3 @@ extension WeatherListViewController: UITableViewDelegate {
         router?.showWeatherDetail()
     }
 }
-
