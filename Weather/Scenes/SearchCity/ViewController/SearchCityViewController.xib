@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchCityViewController" customModule="Weather" customModuleProvider="target">
             <connections>
                 <outlet property="resultLabel" destination="6V2-qS-xSS" id="IRl-I0-JMc"/>
+                <outlet property="saveButton" destination="MdF-WP-Hr4" id="Zma-oK-Efi"/>
                 <outlet property="searchBar" destination="oHF-HD-hhN" id="bnK-zw-0aB"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -23,22 +24,40 @@
                 <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="oHF-HD-hhN">
                     <rect key="frame" x="0.0" y="64" width="414" height="51"/>
                     <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="oqn-my-hqH"/>
+                    </connections>
                 </searchBar>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6V2-qS-xSS">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6V2-qS-xSS">
                     <rect key="frame" x="20" y="135" width="374" height="24"/>
                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MdF-WP-Hr4">
+                    <rect key="frame" x="40" y="782" width="334" height="40"/>
+                    <color key="backgroundColor" systemColor="systemGray4Color"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="gsU-p4-yaI"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                    <state key="normal" title="Save"/>
+                    <connections>
+                        <action selector="saveButtonTapped:" destination="-1" eventType="touchUpInside" id="MxI-1g-Ujv"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="oHF-HD-hhN" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="6PL-K7-EW3"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="MdF-WP-Hr4" secondAttribute="trailing" constant="40" id="MI1-6J-6KK"/>
                 <constraint firstItem="6V2-qS-xSS" firstAttribute="top" secondItem="oHF-HD-hhN" secondAttribute="bottom" constant="20" id="PEl-3D-f4X"/>
+                <constraint firstItem="MdF-WP-Hr4" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="40" id="XXY-up-4Zy"/>
                 <constraint firstItem="oHF-HD-hhN" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="cMu-AL-1zT"/>
                 <constraint firstItem="oHF-HD-hhN" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="lH7-WI-NJM"/>
                 <constraint firstItem="6V2-qS-xSS" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="pB7-IX-HMO"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="MdF-WP-Hr4" secondAttribute="bottom" constant="40" id="peI-ZO-5vW"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="6V2-qS-xSS" secondAttribute="trailing" constant="20" id="rIx-Lp-Y95"/>
             </constraints>
             <point key="canvasLocation" x="71" y="85"/>
@@ -47,6 +66,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray4Color">
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

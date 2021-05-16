@@ -17,6 +17,13 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         tableView.register(UINib(nibName: "WeatherCell", bundle: nil), forCellReuseIdentifier: WeatherCell.reuseIdentifier)
         tableView.tableFooterView = UIView()
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(showSearch))
+    }
+    
+    @objc func showSearch() {
+        let searchVC = SearchCityViewController(nibName: "SearchCityViewController", bundle: nil)
+        navigationController?.present(searchVC, animated: true)
     }
 }
 

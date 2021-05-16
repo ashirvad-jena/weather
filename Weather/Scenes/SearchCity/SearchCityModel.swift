@@ -16,6 +16,7 @@ enum SearchCity {
         
         struct Response {
             let weatherModel: WeatherModel?
+            let error: Error?
         }
     }
 }

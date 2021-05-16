@@ -8,7 +8,7 @@
 import Foundation
 
 protocol FetchCityWeatherProtocol {
-    func fetchWeatherFromApi(for searchName: String, completionHandler: @escaping (ServerWeatherModel?) -> Void)
+    func fetchWeatherFromApi(for searchName: String, completionHandler: @escaping (ServerWeatherModel?, Error?) -> Void)
 }
 
 class WeatherWorker {
@@ -19,10 +19,9 @@ class WeatherWorker {
         self.cityWeather = cityWeather
     }
     
-    func fetchWeatherDetails(for cityName: String, completionHandler: @escaping (ServerWeatherModel?) -> Void) {
-        cityWeather?.fetchWeatherFromApi(for: cityName, completionHandler: { serverWeatherModel in
-            print(serverWeatherModel)
-            completionHandler(serverWeatherModel)
+    func fetchWeatherDetails(for cityName: String, completionHandler: @escaping (ServerWeatherModel?, Error?) -> Void) {
+        cityWeather?.fetchWeatherFromApi(for: cityName, completionHandler: { serverWeatherModel, error in
+            completionHandler(serverWeatherModel, error)
         })
     }
 }

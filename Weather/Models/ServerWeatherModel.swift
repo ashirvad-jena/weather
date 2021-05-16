@@ -9,18 +9,18 @@ import Foundation
 
 // MARK: - ServerWeatherModel
 struct ServerWeatherModel: Codable {
-    let coord: Coord
-    let weather: [Weather]
-    let base: String
+    let coord: Coord?
+    let weather: [Weather]?
+    let base: String?
     let main: Main
-    let visibility: Int
-    let wind: Wind
-    let clouds: Clouds
-    let dt: Int
-    let sys: Sys
-    let timezone, id: Int
+    let visibility: Int?
+    let wind: Wind?
+    let clouds: Clouds?
+    let dt: Int?
+    let sys: Sys?
+    let timezone, id: Int?
     let name: String
-    let cod: Int
+    let cod: Int?
     
     // MARK: - Coord
     struct Coord: Codable {
@@ -29,8 +29,8 @@ struct ServerWeatherModel: Codable {
     
     // MARK: - Main
     struct Main: Codable {
-        let temp, feelsLike, tempMin, tempMax: Double
-        let pressure, humidity: Int
+        let temp, feelsLike, tempMin, tempMax: Double?
+        let pressure, humidity: Int?
         
         enum CodingKeys: String, CodingKey {
             case feelsLike = "feels_like"
@@ -42,10 +42,9 @@ struct ServerWeatherModel: Codable {
     
     // MARK: - Sys
     struct Sys: Codable {
-        let type, id: Int
-        //    let message: Double
-        let country: String
-        let sunrise, sunset: Int
+        let type, id: Int?
+        let country: String?
+        let sunrise, sunset: Int?
     }
     
     // MARK: - Clouds
@@ -55,8 +54,8 @@ struct ServerWeatherModel: Codable {
     
     // MARK: - Weather
     struct Weather: Codable {
-        let id: Int
-        let main, weatherDescription, icon: String
+        let id: Int?
+        let main, weatherDescription, icon: String?
         
         enum CodingKeys: String, CodingKey {
             case id, main
@@ -67,7 +66,7 @@ struct ServerWeatherModel: Codable {
     
     // MARK: - Wind
     struct Wind: Codable {
-        let speed: Double
-        let deg: Int
+        let speed: Double?
+        let deg: Int?
     }
 }
