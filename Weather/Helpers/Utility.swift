@@ -7,6 +7,10 @@
 
 import Foundation
 
+func delay(seconds: Double, completion: @escaping ()-> Void) {
+    DispatchQueue.main.asyncAfter(deadline: .now() + seconds, execute: completion)
+}
+
 struct Utility {
     
     static func mapServerModelToWeatherModel(_ serverModel: ServerWeatherModel) -> WeatherModel {
