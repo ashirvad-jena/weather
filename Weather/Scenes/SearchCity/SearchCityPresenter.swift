@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Defines method to map `seacrh info` into presentable format
 protocol SearchCityPresentationLogic {
     func presentResult(from: SearchCityUseCases.FetchWeather.Response)
 }

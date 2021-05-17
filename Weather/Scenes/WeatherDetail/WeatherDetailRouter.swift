@@ -7,10 +7,12 @@
 
 import Foundation
 
+/// Defines routing methods for `detail weather` scene
 protocol WeatherDetailRouterLogic {
     func routeToWeathersList()
 }
 
+/// Holds the data received from other scenes
 protocol WeatherDetailDataPassing {
     var dataSource: WeatherDetailDataSource? { get }
 }

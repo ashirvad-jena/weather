@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Defines the business logic to fetch and save to local storage, the weather of a city
 protocol SearchCityBusinessLogic {
     func fetchWeatherDetails(for request: SearchCityUseCases.FetchWeather.Request)
     func saveWeatherModel()
@@ -37,6 +38,7 @@ class SearchCityInteractor: SearchCityBusinessLogic {
         })
     }
     
+    /// Saves the weatherModel into local storage
     func saveWeatherModel() {
         guard let weatherModel = weatherModel else { return }
         databaseWorker.save(weatherModel: weatherModel)

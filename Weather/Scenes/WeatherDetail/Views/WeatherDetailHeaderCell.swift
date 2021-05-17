@@ -44,7 +44,10 @@ class WeatherDetailHeaderCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        weatherTypeIcon.backgroundColor = .white
+        weatherTypeIcon.layer.masksToBounds = true
+        weatherTypeIcon.backgroundColor = .lightGray
         weatherTypeIcon.layer.cornerRadius = 4
+        weatherTypeIcon.layer.borderWidth = 2
+        weatherTypeIcon.layer.borderColor = UIColor.gray.cgColor
     }
 }

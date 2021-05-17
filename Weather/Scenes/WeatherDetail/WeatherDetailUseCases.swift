@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// Defines one use case for `Detail Weather` scene i.e, Show weather details of a particular city
 enum WeatherDetailUseCases {
     
     enum DetailWeather {
@@ -31,8 +32,14 @@ enum WeatherDetailUseCases {
                 var title: String?
                 var detail: String?
             }
-            var header: Header
-            var params: [Param] = []
+            
+            struct DisplayWeather {
+                let header: Header
+                let params: [Param]
+            }
+            var displayWeather: DisplayWeather?
+//            var header: Header
+//            var params: [Param] = []
         }
     }
 }

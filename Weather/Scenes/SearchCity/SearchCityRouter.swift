@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Defines routing methods for `serch city` scene
 protocol SearchCityRouterLogic {
     func navigateToWeatherListViewController()
 }

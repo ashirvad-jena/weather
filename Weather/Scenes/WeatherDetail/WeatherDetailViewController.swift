@@ -22,9 +22,8 @@ final class WeatherDetailViewController: UIViewController {
     var router: (WeatherDetailRouterLogic & WeatherDetailDataPassing)?
     var interactor: WeatherDetailBusinessLogic?
     
-    // MARK: ViewModels for UI
-    private var detailWeatherHeader: WeatherDetailUseCases.DetailWeather.ViewModel.Header?
-    private var detailWeatherParams: [WeatherDetailUseCases.DetailWeather.ViewModel.Param] = []
+    // MARK: ViewModel for UI
+    private var detailWeather: WeatherDetailUseCases.DetailWeather.ViewModel.DisplayWeather?
     
     // MARK: Setup
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -70,25 +69,27 @@ final class WeatherDetailViewController: UIViewController {
     }
 }
 
+// MARK: - WeatherDetailDisplayLogic
 extension WeatherDetailViewController: WeatherDetailDisplayLogic {
     func displayDetailWeather(viewModel: WeatherDetailUseCases.DetailWeather.ViewModel) {
-        detailWeatherHeader = viewModel.header
-        detailWeatherParams = viewModel.params
+        detailWeather = viewModel.displayWeather
         tableView.reloadData()
     }
 }
 
+// MARK: - UITableViewDataSource
 extension WeatherDetailViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let detailWeather = detailWeather else { return 0 }
         switch section {
         case 0:
-            return detailWeatherHeader == nil ? 0 : 1
+            return 1
         case 1:
-            return detailWeatherParams.count
+            return detailWeather.params.count
         default:
             return 0
         }
@@ -98,12 +99,14 @@ extension WeatherDetailViewController: UITableViewDataSource {
         switch indexPath.section {
         case 0:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: WeatherDetailHeaderCell.reuseIdentifier, for: indexPath) as? WeatherDetailHeaderCell else { return UITableViewCell() }
-            cell.header = detailWeatherHeader
+            cell.header = detailWeather?.header
             return cell
             
         case 1:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: WeatherDetailInfoCell.reuseIdentifier, for: indexPath) as? WeatherDetailInfoCell else { return UITableViewCell() }
-            cell.param = detailWeatherParams[indexPath.row]
+            if let params = detailWeather?.params {
+                cell.param = params[indexPath.row]
+            }
             return cell
             
         default:
@@ -112,6 +115,7 @@ extension WeatherDetailViewController: UITableViewDataSource {
     }
 }
 
+// MARK: - UITableViewDelegate
 extension WeatherDetailViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

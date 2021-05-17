@@ -35,10 +35,11 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MdF-WP-Hr4">
-                    <rect key="frame" x="40" y="782" width="334" height="40"/>
+                    <rect key="frame" x="107" y="772" width="200" height="50"/>
                     <color key="backgroundColor" systemColor="systemGray4Color"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="40" id="gsU-p4-yaI"/>
+                        <constraint firstAttribute="width" constant="200" id="Vz8-Sd-Nfz"/>
+                        <constraint firstAttribute="height" constant="50" id="gsU-p4-yaI"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="22"/>
                     <state key="normal" title="Save"/>
@@ -51,14 +52,13 @@
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="oHF-HD-hhN" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="6PL-K7-EW3"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="MdF-WP-Hr4" secondAttribute="trailing" constant="40" id="MI1-6J-6KK"/>
                 <constraint firstItem="6V2-qS-xSS" firstAttribute="top" secondItem="oHF-HD-hhN" secondAttribute="bottom" constant="20" id="PEl-3D-f4X"/>
-                <constraint firstItem="MdF-WP-Hr4" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="40" id="XXY-up-4Zy"/>
                 <constraint firstItem="oHF-HD-hhN" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="cMu-AL-1zT"/>
                 <constraint firstItem="oHF-HD-hhN" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="lH7-WI-NJM"/>
                 <constraint firstItem="6V2-qS-xSS" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="pB7-IX-HMO"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="MdF-WP-Hr4" secondAttribute="bottom" constant="40" id="peI-ZO-5vW"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="6V2-qS-xSS" secondAttribute="trailing" constant="20" id="rIx-Lp-Y95"/>
+                <constraint firstItem="MdF-WP-Hr4" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="wX9-xY-Rau"/>
             </constraints>
             <point key="canvasLocation" x="71" y="85"/>
         </view>

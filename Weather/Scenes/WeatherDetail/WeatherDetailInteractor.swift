@@ -7,14 +7,17 @@
 
 import Foundation
 
+/// Holds data for the `detail weather` scene
 protocol WeatherDetailDataSource {
     var weatherModel: WeatherModel? { get set }
 }
 
+/// Defines methods to be called to fetch weather details
 protocol WeatherDetailBusinessLogic {
     func getDetailWeather()
 }
 
+/// Responible for getting request from `ViewController`,  and handing processed data to presenter
 class WeatherDetailInteractor: WeatherDetailDataSource, WeatherDetailBusinessLogic {
     
     var weatherModel: WeatherModel?
